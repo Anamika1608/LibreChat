@@ -1,0 +1,14 @@
+services:
+  api:
+    # Built from this fork. Sign-up is off (ALLOW_REGISTRATION=false); one shared account signs in.
+    image: librechat-local
+    build:
+      context: .
+      target: node
+    volumes:
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
+  admin-panel:
+    # Not needed for one shared account.
+    profiles: ["disabled"]
