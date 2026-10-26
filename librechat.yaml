@@ -1,0 +1,45 @@
+version: 1.3.17
+cache: true
+
+interface:
+  # File search is skipped for now (needs an embeddings key).
+  fileSearch: false
+  defaultPinnedTools:
+    - 'artifacts'
+    - 'execute_code'
+    - 'skills'
+
+endpoints:
+  agents:
+    # Same as the default list in librechat.example.yaml, without file_search and web_search.
+    capabilities: ["deferred_tools", "execute_code", "artifacts", "subagents", "actions", "context", "skills", "memory", "ask_user_question", "tools", "ocr"]
+
+# Claude models with code execution, artifacts and skills always on, like claude.ai.
+# Without a spec, the "Run Code" and "Skills" chips must be switched on for each message.
+modelSpecs:
+  list:
+    - name: claude-opus-5-5
+      label: Claude Opus 5.5
+      default: true
+      preset:
+        endpoint: anthropic
+        model: claude-opus-5-5
+      executeCode: true
+      artifacts: true
+      skills: true
+    - name: claude-sonnet-5-5
+      label: Claude Sonnet 5.5
+      preset:
+        endpoint: anthropic
+        model: claude-sonnet-5-5
+      executeCode: true
+      artifacts: true
+      skills: true
+    - name: claude-fable-5-1
+      label: Claude Fable 5.1
+      preset:
+        endpoint: anthropic
+        model: claude-fable-5-1
+      executeCode: true
+      artifacts: true
+      skills: true
